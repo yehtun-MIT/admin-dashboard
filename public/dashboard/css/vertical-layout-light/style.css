@@ -28591,7 +28591,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav .nav-item.active > .nav-link {
-  background: #5a8dee;
+  background: #677788;
   position: relative;
 }
 
@@ -28622,7 +28622,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link, .sidebar .nav:not(.sub-menu) > .nav-item:hover[aria-expanded="true"] {
-  background: #677788;
+  background: #ccd3da;
   color: #fff;
 }
 
@@ -28644,14 +28644,31 @@ div.tagsinput span.tag a {
   margin-bottom: 0;
   margin-top: 0;
   list-style: none;
-  padding: 0.25rem 0 0 3.07rem;
+  /* padding: 0.25rem 0 0 3.07rem; */
+  
+  background: #a6b5c4;
+  /* padding-bottom: 12px; */
+}
+
+/* My Css  */
+.sub-menu .nav-item .nav-link{
+  margin-left: 30px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.collapse{
   background: #677788;
-  padding-bottom: 12px;
+}
+
+.collapse .nav .nav-item:hover{
+  background-color: #677788c9 !important;
 }
 .sidebar .nav.sub-menu .nav-item:hover{
   background: #ab4646;
   /* padding-bottom: 12px; */
 }
+
+/* my Css end */
 
 .sidebar .nav.sub-menu .nav-item {
   padding: 0;
@@ -28662,9 +28679,10 @@ div.tagsinput span.tag a {
   width: 5px;
   height: 5px;
   position: absolute;
-  margin-top: 16px;
+  margin-top: 20px;
   border-radius: 50%;
-  background: #b2b2b2;
+  background: #ffffff;
+  margin-left: 30px;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link {
@@ -30087,9 +30105,10 @@ div.tagsinput span.tag a {
   .sidebar-icon-only .sidebar .nav:not(.sub-menu) .nav-item:hover .nav-link {
     border-radius: 0;
   }
-  .sidebar-icon-only .sidebar .nav.sub-menu {
-    padding: 0 0 0 1.5rem;
-  }
+
+  /* .sidebar-icon-only .sidebar .nav.sub-menu { */
+    /* padding: 0 0 0 1.5rem; */
+  /* } */
   .sidebar-dark.sidebar-icon-only .sidebar .nav.sub-menu {
     background: #232227;
   }

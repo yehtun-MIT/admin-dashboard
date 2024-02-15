@@ -1,4 +1,8 @@
-
+{{-- @section('style')
+    .collapse{
+      background: #677788;
+    }
+@endsection --}}
     <!-- partial:../../partials/_settings-panel.html -->
     <div class="theme-setting-wrapper">
       <div id="settings-trigger"><i class="ti-settings"></i></div>
@@ -62,3 +66,7 @@
         </li>
       </ul>
     </nav>
+
+    @section('scripts')
+        
+    @endsection
