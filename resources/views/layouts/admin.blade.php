@@ -151,7 +151,7 @@
                 <div class="content-wrapper">
                     <div>
                         @if (session('message'))
-                            <div class="row mb-2">
+                            <div class="mb-2">
                                 <div class="col-lg-12 alert alert-success alert-dismissible" role="alert">
                                     <strong>{{ session('message') }}</strong>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"
@@ -162,7 +162,7 @@
                             </div>
                         @endif
                         @if (session('wrong_message'))
-                            <div class="row mb-2">
+                            <div class="mb-2">
                                 <div class="col-lg-12 alert alert-danger alert-dismissible" role="alert">
                                     <strong>{{ session('wrong_message') }}</strong>
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
