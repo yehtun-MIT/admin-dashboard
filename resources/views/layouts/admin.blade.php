@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Myanmar Impact Service</title>
@@ -16,11 +17,18 @@
 
     {{-- Datatables Css --}}
     <link rel="stylesheet" href="{{ asset('dashboard/vendors/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-    <link rel="stylesheet" href="{{ asset('dashboard/vendors/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('dashboard/vendors/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
 
     {{-- Bootstrap  --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
+    {{-- custom --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/expense.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/tree.css') }}">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
     @yield('styles')
 
@@ -30,10 +38,10 @@
     <div class="container-scroller">
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo mr-5" href="{{ route('home')}}"><img src="{{asset('dashboard/images/logo.svg')}}"
-                        class="mr-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="{{ route('home')}}"><img src="{{asset('dashboard/images/logo-mini.svg')}}"
-                        alt="logo" /></a>
+                <a class="navbar-brand brand-logo mr-5" href="{{ route('home') }}"><img
+                        src="{{ asset('dashboard/images/logo.svg') }}" class="mr-2" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="{{ route('home') }}"><img
+                        src="{{ asset('dashboard/images/logo-mini.svg') }}" alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler align-self-center" type="button" data-toggle="minimize"
@@ -105,7 +113,8 @@
                         </div>
                     </li>
                     <li class="nav-item nav-profile dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+                            id="profileDropdown">
                             <img src="{{ asset('dashboard/images/faces/face28.jpg') }}" alt="profile" />
                             {{ Auth::user()->name }}
                         </a>
@@ -140,11 +149,42 @@
             @include('partials.menu')
             <div class="main-panel">
                 <div class="content-wrapper">
+                    <div>
+                        @if (session('message'))
+                            <div class="row mb-2">
+                                <div class="col-lg-12 alert alert-success alert-dismissible" role="alert">
+                                    <strong>{{ session('message') }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"
+                                        style="color:black">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        @endif
+                        @if (session('wrong_message'))
+                            <div class="row mb-2">
+                                <div class="col-lg-12 alert alert-danger alert-dismissible" role="alert">
+                                    <strong>{{ session('wrong_message') }}</strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                        @endif
+                        @if ($errors->count() > 0)
+                            <div class="alert alert-danger">
+                                <ul class="list-unstyled">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
                     @yield('content')
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- plugins:js -->

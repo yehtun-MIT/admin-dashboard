@@ -35,8 +35,8 @@
           </a>
           <div class="collapse" id="ui-basic">
             <ul class="nav flex-column sub-menu">
-              <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/buttons.html">Permissions</a></li>
-              <li class="nav-item"> <a class="nav-link" href="../../pages/ui-features/dropdowns.html">Roles</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.permissions.index')}}">Permissions</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{{ route('admin.roles.index')}}">Roles</a></li>
               <li class="nav-item"> <a class="nav-link" href="{{ route('admin.users.index')}}">Users</a></li>
             </ul>
           </div>

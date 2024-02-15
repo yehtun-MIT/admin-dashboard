@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('dashboard/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/css/vertical-layout-light/style.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/images/favicon.png') }}">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
+
 </head>
 
 <body>
