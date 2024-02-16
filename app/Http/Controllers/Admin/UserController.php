@@ -30,8 +30,8 @@ class UserController extends Controller
     }
     public function show($id)
     {
-        $users = $this->users->findOrFail($id);
-        return view('admin.users.show',compact('users'));
+        $user = $this->users->findOrFail($id);
+        return view('admin.users.show',compact('user'));
     }
     public function edit($id)
     {
