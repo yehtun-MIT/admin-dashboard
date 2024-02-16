@@ -26202,7 +26202,7 @@ body.avgrund-active {
 .dataTables_wrapper .dataTable thead .sorting_desc_disabled:before {
   content: "\e64b";
   right: 1.2em;
-  bottom: 0;
+  top: 9px;
 }
 
 .dataTables_wrapper .dataTable thead .sorting:after,
