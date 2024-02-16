@@ -22,7 +22,7 @@
         <div class="card-body">
             <form method="POST" action="{{ route('admin.permissions.store') }}" enctype="multipart/form-data" id="myForm">
                 @csrf
-                <div class="row">
+                <div class="row d-flex flex-warp">
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="form-group">
                             <label class="required" for="title">{{ trans('cruds.permission.fields.title') }}</label>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 d-flex">
-                        <div class="form-group mt-2">
+                        <div class="form-group mt-2 mr-3">
                             <button class="btn btn-success" type="submit" id="save">
                                 {{ trans('global.save') }}
                             </button>

@@ -30,18 +30,24 @@ class UserController extends Controller
     }
     public function show($id)
     {
-        //
+        $users = $this->users->findOrFail($id);
+        return view('admin.users.show',compact('users'));
     }
     public function edit($id)
     {
-        //
+        $user = $this->users->findOrFail($id);
+        return view('admin.users.edit',compact('user'));
     }
     public function update(Request $request, $id)
     {
-        //
+        $user = $this->users->findOrFail($id);
+        $user->update($request->all());
+        return redirect()->route('admin.users.index')->with('message' ,'User Update Successfuly!');
     }
     public function destroy($id)
     {
-        //
+        $user = $this->users->findOrFail($id);
+        $user->destroy($id);
+        return redirect()->route('admin.users.index')->with('message' ,'User Delete Successfuly!');
     }
 }
