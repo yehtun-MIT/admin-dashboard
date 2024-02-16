@@ -8,6 +8,7 @@ use App\Http\Requests\StorePermissionsRequest;
 use App\Http\Requests\UpdatePermissionsRequest;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response;
 
 class PermissionController extends Controller
@@ -21,12 +22,14 @@ class PermissionController extends Controller
     }
     public function index()
     {
+        abort_if(Gate::denies("permission_access"), Response::HTTP_FORBIDDEN,"403 Forbidden");
         $permissions = $this->permissions->all();
         return view('admin.permissions.index',compact('permissions'));
     }
 
     public function create()
     {
+        abort_if(Gate::denies("permission_create"), Response::HTTP_FORBIDDEN,"403 Forbidden");
         return view('admin.permissions.create');
     }
 
@@ -38,12 +41,14 @@ class PermissionController extends Controller
 
     public function show($id)
     {
+        abort_if(Gate::denies("permission_show"), Response::HTTP_FORBIDDEN,"403 Forbidden");
         $permission = $this->permissions->findOrFail($id);
         return view('admin.permissions.show',compact('permission'));
     }
 
     public function edit($id)
     {
+        abort_if(Gate::denies("permission_edit"), Response::HTTP_FORBIDDEN,"403 Forbidden");
         $permission = $this->permissions->findOrFail($id);
         return view('admin.permissions.edit',compact('permission'));
     }
@@ -57,6 +62,7 @@ class PermissionController extends Controller
 
     public function destroy($id)
     {
+        abort_if(Gate::denies("permission_delete"), Response::HTTP_FORBIDDEN,"403 Forbidden");
         $permission = $this->permissions->findOrFail($id);
         $permission->destroy($id);
         return redirect()->route('admin.permissions.index')->with('message' ,'Permission Delete Successfuly!');

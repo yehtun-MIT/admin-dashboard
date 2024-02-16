@@ -3,7 +3,7 @@
     <div class="card">
         <div class="custom-header">
             {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
-            {{-- @can('user_create') --}}
+            @can('user_create')
                 <div style="margin-bottom: 10px;" class="row">
                     <div class="col-lg-12">
                         <a class="btn btn-success" href="{{ route('admin.users.create') }}">
@@ -11,7 +11,7 @@
                         </a>
                     </div>
                 </div>
-            {{-- @endcan --}}
+            @endcan
         </div>
 
         <div class="card-body">
@@ -49,25 +49,25 @@
                                     @endforeach
                                 </td> --}}
                                 <td>
-                                    {{-- @can('user_show') --}}
+                                    @can('user_show')
                                         <a class="p-0 glow text-white btn btn-info"
                                             style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="view" href="{{ route('admin.users.show', $user->id) }}">
                                             {{-- <i class='bx bx-show text-primary'></i> --}}
                                             Show
                                         </a>
-                                    {{-- @endcan --}}
+                                    @endcan
 
-                                    {{-- @can('user_edit') --}}
+                                    @can('user_edit')
                                         <a class="p-0 glow text-white btn btn-warning"
                                             style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="edit" href="{{ route('admin.users.edit', $user->id) }}">
                                             {{-- <i class='bx bx-edit text-success'></i> --}}
                                             Edit
                                         </a>
-                                    {{-- @endcan --}}
+                                    @endcan
 
-                                    {{-- @can('user_delete') --}}
+                                    @can('user_delete')
                                         <form id="orderDelete-{{ $user->id }}"
                                             action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
                                             onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
@@ -85,7 +85,7 @@
                                                 Delete
                                             </button>
                                         </form>
-                                    {{-- @endcan --}}
+                                    @endcan
                                 </td>
 
                             </tr>

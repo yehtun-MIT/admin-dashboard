@@ -36,7 +36,8 @@
                                 <td>
                                     {{ $role->title ?? '' }}
                                 </td>
-                                <td width="900px">
+                                <td style="white-space: normal;">
+                                   
                                     @foreach ($role->permissions as $key => $item)
                                         <span class="badge bg-info my-1 rounded-pill">{{ $item->title }}</span>
                                     @endforeach

@@ -3,7 +3,7 @@
     <div class="card">
         <div class="custom-header">
             {{ trans('cruds.permission.title_singular') }} {{ trans('global.list') }}
-            {{-- @can('permission_create') --}}
+            @can('permission_create')
                 <div style="margin-bottom: 10px;" class="row">
                     <div class="col-lg-12">
                         <a class="btn btn-success" href="{{ route('admin.permissions.create') }}">
@@ -11,7 +11,7 @@
                         </a>
                     </div>
                 </div>
-            {{-- @endcan --}}
+            @endcan
         </div>
 
         <div class="card-body">
@@ -35,23 +35,23 @@
                                 </td>
                                 <td>
                                     
-                                    {{-- @can('permission_show') --}}
+                                    @can('permission_show')
                                         <a class="p-0 glow btn btn-info text-white"
                                             style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="view" href="{{ route('admin.permissions.show', $permission->id) }}">
                                             Show
                                         </a>
-                                    {{-- @endcan --}}
+                                    @endcan
 
-                                    {{-- @can('permission_edit') --}}
+                                    @can('permission_edit')
                                         <a class="p-0 glow btn btn-warning text-white"
                                             style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="edit" href="{{ route('admin.permissions.edit', $permission->id) }}">
                                             Edit
                                         </a>
-                                    {{-- @endcan --}}
+                                    @endcan
 
-                                    {{-- @can('permission_delete') --}}
+                                    @can('permission_delete')
                                         <form id="orderDelete-{{ $permission->id }}"
                                             action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST"
                                             onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
@@ -68,7 +68,7 @@
                                                 Delete
                                             </button>
                                         </form>
-                                    {{-- @endcan --}}
+                                    @endcan
                                 </td>
 
                             </tr>
