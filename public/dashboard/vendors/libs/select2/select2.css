@@ -87,6 +87,8 @@
   padding: 6px;
   user-select: none;
   -webkit-user-select: none;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
 }
 .select2-results__option[aria-selected] {
   cursor: pointer;
@@ -210,6 +212,7 @@ html:not([dir=rtl]) .select2-container--default .select2-selection--single .sele
   display: block;
   list-style: none;
   width: 100%;
+  border: 1px solid gray;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
   list-style: none;

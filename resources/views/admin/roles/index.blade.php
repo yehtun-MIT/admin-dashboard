@@ -36,19 +36,17 @@
                                 <td>
                                     {{ $role->title ?? '' }}
                                 </td>
-                                {{-- <td width="900px">
+                                <td width="900px">
                                     @foreach ($role->permissions as $key => $item)
                                         <span class="badge bg-info my-1 rounded-pill">{{ $item->title }}</span>
                                     @endforeach
-                                </td> --}}
+                                </td>
                                 <td>
-                                    @can('role_show')
-                                        <a class="p-0 glow"
-                                            style="width: 26px;height: 36px;display: inline-block;line-height: 36px;color:grey;"
-                                            title="view" href="{{ route('admin.roles.show', $role->id) }}">
-                                            <i class='bx bx-show text-primary'></i>
+                                    {{-- @can('role_show') --}}
+                                        <a class="btn btn-primary"
+                                            title="view" href="{{ route('admin.roles.show', $role->id) }}"> Show
                                         </a>
-                                    @endcan
+                                    {{-- @endcan --}}
 
                                     @can('role_edit')
                                         <a class="p-0 glow"

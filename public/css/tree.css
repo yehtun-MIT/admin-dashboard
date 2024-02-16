@@ -1,0 +1,33 @@
+/* body {
+    background-color: #fafafa;
+    font-family: 'Open Sans';
+  }
+
+  .container {
+    margin: 150px auto;
+  } */
+
+   .treegrid-indent {
+    width: 0px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .treegrid-expander {
+    width: 0px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+    left: -17px;
+    cursor: pointer;
+  } 
+  .td-title {
+    /* background-color: rgb(219, 246, 246); */
+  }
+  /* .glyphicon-chevron-right{
+    margin-right: 2px;
+  }
+  .glyphicon-chevron-right:before {
+    content: "\e080";
+} */

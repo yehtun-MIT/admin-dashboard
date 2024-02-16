@@ -39,12 +39,7 @@ class RoleController extends Controller
     }
     public function store(StoreRolesRequest $request)
     {
-
-        $role = $this->roles->create($request->all()); // not good for terms of security.
-
-        // addinn permissions along with role
-        $role->permissions()->sync($request->permissions,[]);
-
+        $this->roles->create($request->all());
         return redirect()->route('admin.roles.index')->with('message' , 'Role Create Successfully!');
     }
 

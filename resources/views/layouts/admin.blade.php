@@ -8,6 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Myanmar Impact Service</title>
+
+      {{-- Select 2 --}}
+      <link rel="stylesheet" href="{{ asset('dashboard/vendors/libs/select2/select2.css') }}" />
     <!-- dashboard:css -->
     <link rel="stylesheet" href="{{ asset('dashboard/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/vendors/ti-icons/css/themify-icons.css') }}">
@@ -15,10 +18,17 @@
     <link rel="stylesheet" href="{{ asset('dashboard/css/vertical-layout-light/style.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/images/favicon.png') }}">
 
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="{{ asset('dashboard/css/rtl/core.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dashboard/css/rtl/theme-default.css') }}" />
+
+    
     {{-- Datatables Css --}}
     <link rel="stylesheet" href="{{ asset('dashboard/vendors/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
-    <link rel="stylesheet"
-        href="{{ asset('dashboard/vendors/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+    <link rel="stylesheet" href="{{ asset('dashboard/vendors/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+
+  
+
 
     {{-- Bootstrap  --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -188,7 +198,21 @@
     </div>
 
     <!-- plugins:js -->
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+    <!-- Helpers -->
+    <script src="{{ asset('dashboard/vendors/js/helpers.js') }}"></script>
+    <script src="{{ asset('dashboard/js/config.js') }}"></script>
+
+    {{-- JQuery --}}
+
+    <script src="{{ asset('dashboard/vendors/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('dashboard/vendors/libs/jquery-repeater/jquery-repeater.js') }}"></script>
+    <script src="{{ asset('dashboard/vendors/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('dashboard/vendors/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('dashboard/vendors/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
 
     <script src="{{ asset('dashboard/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- inject:js -->
@@ -211,6 +235,58 @@
     <script src="{{ asset('dashboard/vendors/libs/pdfmake/pdfmake.js') }}"></script>
     <script src="{{ asset('dashboard/vendors/libs/datatables-buttons/buttons.html5.js') }}"></script>
     <script src="{{ asset('dashboard/vendors/libs/datatables-buttons/buttons.print.js') }}"></script>
+
+    {{-- Select 2 --}}
+    <script src="{{ asset('dashboard/vendors/libs/select2/select2.js') }}"></script>
+
+    <!-- Main JS -->
+    <script src="{{ asset('dashboard/js/main.js') }}"></script>
+
+    {{-- <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>   --}}
+
+    <script>
+        function setNoti() {
+            var count = localStorage.getItem('count');
+            if (count > 0) {
+                console.log(count);
+                $('#noti').attr('hidden', false);
+            } else {
+                $('#noti').attr('hidden', true);
+            }
+            $('#noti').text(count);
+        }
+        setNoti();
+        $('.follow-up').on('click', function() {
+
+            localStorage.setItem('count', 0);
+            setNoti();
+        })
+
+
+        $(() => {
+
+            $('.select-all').click(function() {
+                let $select2 = $(this).parent().siblings('.select2')
+                $select2.find('option').prop('selected', 'selected')
+                $select2.trigger('change')
+            })
+            $('.deselect-all').click(function() {
+                let $select2 = $(this).parent().siblings('.select2')
+                $select2.find('option').prop('selected', '')
+                $select2.trigger('change')
+            })
+            $('.select2').select2();
+            //csv modal
+            let csvModal = new bootstrap.Modal(document.getElementById('csvImportModal'));
+            $("button[data-toggle='modal']").on('click', () => {
+                csvModal.show();
+            })
+
+            $("button[data-dismiss='modal']").on('click', () => {
+                csvModal.hide();
+            })
+        });
+    </script>
     @yield('scripts')
 
 </body>
