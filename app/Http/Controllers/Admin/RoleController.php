@@ -20,8 +20,8 @@ class RoleController extends Controller
     }
     public function index()
     {
-        $roles = $this->roles->all();
-        return view('admin.roles.index',compact('roles'));
+        $roles = $this->roles->with('permissions')->get();
+        return view('admin.roles.index',compact(['roles']));
     }
 
     public function create()
@@ -31,7 +31,9 @@ class RoleController extends Controller
     }
     public function store(StoreRolesRequest $request)
     {
-        $this->roles->create($request->all());
+        $role = $this->roles->create($request->all());
+        $permissions = $request->input('permissions', []); // Assuming the permissions are sent in the request
+        $role->permissions()->attach($permissions);
         return redirect()->route('admin.roles.index')->with('message' , 'Role Create Successfully!');
     }
 
