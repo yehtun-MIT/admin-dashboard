@@ -31,9 +31,10 @@ class Role extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
-    
+
     public function permissions()
     {
+        // mistake at joining relation
         return $this->belongsToMany(Permission::class,'permission_role','role_id','permission_id');
     }
 }

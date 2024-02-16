@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MassDestroyPermissionRequest;
 use App\Http\Requests\StorePermissionsRequest;
 use App\Http\Requests\UpdatePermissionsRequest;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class PermissionController extends Controller
 {
@@ -58,5 +60,11 @@ class PermissionController extends Controller
         $permission = $this->permissions->findOrFail($id);
         $permission->destroy($id);
         return redirect()->route('admin.permissions.index')->with('message' ,'Permission Delete Successfuly!');
+    }
+    public function massDestroy(MassDestroyPermissionRequest $request)
+    {
+        Permission::whereIn('id', request('ids'))->delete();
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

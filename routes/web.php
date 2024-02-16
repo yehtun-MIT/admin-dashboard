@@ -34,12 +34,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('/', 'HomeController@index')->name('home');
 
     // User
+    Route::delete('users/destroy', 'UserController@massDestroy')->name('users.massDestroy');
     Route::resource('users','UserController');
 
     // Permission
+    Route::delete('permissions/destroy', 'PermissionController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions','PermissionController');
 
     // Roles
+    Route::delete('roles/destroy', 'RoleController@massDestroy')->name('roles.massDestroy');
     Route::resource('roles','RoleController');
 
     Route::post('posts/media', 'PostController@storeMedia')->name('posts.storeMedia');
