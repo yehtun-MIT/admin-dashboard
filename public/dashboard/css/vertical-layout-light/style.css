@@ -24636,6 +24636,7 @@ dl li {
 
 .table td .badge, .jsgrid .jsgrid-table td .badge {
   margin-bottom: 0;
+  padding: 8px;
 }
 
 .table.table-borderless, .jsgrid .table-borderless.jsgrid-table {
