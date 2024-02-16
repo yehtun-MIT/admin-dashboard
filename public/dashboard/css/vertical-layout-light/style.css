@@ -28609,10 +28609,10 @@ div.tagsinput span.tag a {
   border-radius: 8px;
 }
 
-.sidebar .nav .nav-item.active > .nav-link {
+/* .sidebar .nav .nav-item.active > .nav-link {
   background: #677788;
   position: relative;
-}
+} */
 
 .sidebar .nav .nav-item.active > .nav-link i,
 .sidebar .nav .nav-item.active > .nav-link .menu-title,
