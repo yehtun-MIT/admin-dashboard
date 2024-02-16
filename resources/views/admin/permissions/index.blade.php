@@ -34,23 +34,24 @@
                                     {{ $permission->title ?? '' }}
                                 </td>
                                 <td>
-                                    @can('permission_show')
-                                        <a class="p-0 glow"
-                                            style="width: 26px;height: 36px;display: inline-block;line-height: 36px;color:grey;"
+                                    
+                                    {{-- @can('permission_show') --}}
+                                        <a class="p-0 glow btn btn-info text-white"
+                                            style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="view" href="{{ route('admin.permissions.show', $permission->id) }}">
-                                            <i class='bx bx-show text-primary'></i>
+                                            Show
                                         </a>
-                                    @endcan
+                                    {{-- @endcan --}}
 
-                                    @can('permission_edit')
-                                        <a class="p-0 glow"
-                                            style="width: 26px;height: 36px;display: inline-block;line-height: 36px;color:grey;"
+                                    {{-- @can('permission_edit') --}}
+                                        <a class="p-0 glow btn btn-warning text-white"
+                                            style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="edit" href="{{ route('admin.permissions.edit', $permission->id) }}">
-                                            <i class='bx bx-edit text-success'></i>
+                                            Edit
                                         </a>
-                                    @endcan
+                                    {{-- @endcan --}}
 
-                                    @can('permission_delete')
+                                    {{-- @can('permission_delete') --}}
                                         <form id="orderDelete-{{ $permission->id }}"
                                             action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST"
                                             onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
@@ -58,16 +59,16 @@
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                             <input type="hidden"
-                                                style="width: 26px;height: 36px;display: inline-block;line-height: 36px;"
+                                                style="width: 60px;display: inline-block;line-height: 36px;"
                                                 class=" p-0 glow" value="{{ trans('global.delete') }}">
                                             <button
-                                                style="width: 26px;height: 36px;display: inline-block;line-height: 36px;border:none;color:grey;background:none;"
-                                                class=" p-0 glow" title="delete"
+                                                style="width: 60px;display: inline-block;line-height: 36px;border:none;"
+                                                class=" p-0 glow btn btn-danger text-white" title="delete"
                                                 onclick="event.preventDefault(); document.getElementById('orderDelete-{{ $permission->id }}').submit();">
-                                                <i class="bx bx-trash text-danger"></i>
+                                                Delete
                                             </button>
                                         </form>
-                                    @endcan
+                                    {{-- @endcan --}}
                                 </td>
 
                             </tr>

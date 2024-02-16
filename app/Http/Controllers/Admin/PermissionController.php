@@ -56,7 +56,7 @@ class PermissionController extends Controller
     public function destroy($id)
     {
         $permission = $this->permissions->findOrFail($id);
-        $permission->destroy();
+        $permission->destroy($id);
         return redirect()->route('admin.permissions.index')->with('message' ,'Permission Delete Successfuly!');
     }
 }
