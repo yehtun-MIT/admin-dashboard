@@ -28,13 +28,13 @@ class StoreRolesRequest extends FormRequest
                 'string',
                 'required',
             ],
-            // 'permissions.*' => [
-            //     'integer',
-            // ],
-            // 'permissions' => [
-            //     'required',
-            //     'array',
-            // ],
+            'permissions.*' => [
+                'integer',
+            ],
+            'permissions' => [
+                'required',
+                'array',
+            ],
         ];
     }
 }
