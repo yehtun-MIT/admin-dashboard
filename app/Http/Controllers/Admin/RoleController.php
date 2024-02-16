@@ -40,7 +40,9 @@ class RoleController extends Controller
     public function store(StoreRolesRequest $request)
     {
         abort_if(Gate::denies("role_create"), Response::HTTP_FORBIDDEN,"403 Forbidden");
-        $this->roles->create($request->all());
+        $role = $this->roles->create($request->all());
+        $role->permissions()->sync($request->input('permissions', []));
+        
         return redirect()->route('admin.roles.index')->with('message' , 'Role Create Successfully!');
     }
 
@@ -48,7 +50,7 @@ class RoleController extends Controller
     {
         abort_if(Gate::denies("role_show"), Response::HTTP_FORBIDDEN,"403 Forbidden");
 
-        $role = $this->roles->findOrFail($id);
+        $role = $this->roles->with('permissions')->findOrFail($id);
         return view('admin.roles.show',compact(['role']));
     }
 
@@ -66,13 +68,13 @@ class RoleController extends Controller
     {
         abort_if(Gate::denies("role_edit"), Response::HTTP_FORBIDDEN,"403 Forbidden");
 
-    //    return$request->permissions;
         $role = $this->roles->findOrFail($id);
         $role->update($request->all());
-        $role->permissions()->sync($request->permissions,[]); // update persmissions along with role
+        $role->permissions()->sync($request->input('permissions', [])); // update persmissions along with role
 
         return redirect()->route('admin.roles.index')->with('message' , 'Role Update Successfully!');
     }
+
 
 
     public function destroy($id)
@@ -80,7 +82,7 @@ class RoleController extends Controller
         abort_if(Gate::denies("role_delete"), Response::HTTP_FORBIDDEN,"403 Forbidden");
 
         $role = $this->roles->findOrFail($id);
-        $role->destroy();
+        $role->delete();
         return redirect()->route('admin.roles.index')->with('message' , 'Role Delete Successfully!');
     }
 
