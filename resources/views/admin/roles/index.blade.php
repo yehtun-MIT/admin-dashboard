@@ -43,20 +43,19 @@
                                 </td>
                                 <td>
                                     {{-- @can('role_show') --}}
-                                        <a class="btn btn-primary"
+                                        <a class="p-0 glow btn btn-info text-white"
+                                        style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="view" href="{{ route('admin.roles.show', $role->id) }}"> Show
                                         </a>
                                     {{-- @endcan --}}
 
-                                    @can('role_edit')
-                                        <a class="p-0 glow"
-                                            style="width: 26px;height: 36px;display: inline-block;line-height: 36px;color:grey;"
-                                            title="edit" href="{{ route('admin.roles.edit', $role->id) }}">
-                                            <i class='bx bx-edit text-success'></i>
+                                    {{-- @can('role_edit') --}}
+                                        <a class="p-0 glow btn btn-warning text-white"
+                                        style="width: 60px;display: inline-block;line-height: 36px;color:grey;"  title="edit" href="{{ route('admin.roles.edit', $role->id) }}"> Edit
                                         </a>
-                                    @endcan
+                                    {{-- @endcan --}}
 
-                                    @can('role_delete')
+                                    {{-- @can('role_delete') --}}
                                         <form id="orderDelete-{{ $role->id }}"
                                             action="{{ route('admin.roles.destroy', $role->id) }}" method="POST"
                                             onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
@@ -66,14 +65,12 @@
                                             <input type="hidden"
                                                 style="width: 26px;height: 36px;display: inline-block;line-height: 36px;"
                                                 class=" p-0 glow" value="{{ trans('global.delete') }}">
-                                            <button
-                                                style="width: 26px;height: 36px;display: inline-block;line-height: 36px;border:none;color:grey;background:none;"
-                                                class=" p-0 glow" title="delete"
-                                                onclick="event.preventDefault(); document.getElementById('orderDelete-{{ $role->id }}').submit();">
-                                                <i class="bx bx-trash text-danger"></i>
+                                            <button style="width: 60px;display: inline-block;line-height: 36px;border:none;"
+                                            class=" p-0 glow btn btn-danger text-white"
+                                                onclick="event.preventDefault(); document.getElementById('orderDelete-{{ $role->id }}').submit();"> Delete
                                             </button>
                                         </form>
-                                    @endcan
+                                    {{-- @endcan --}}
                                 </td>
 
                             </tr>
