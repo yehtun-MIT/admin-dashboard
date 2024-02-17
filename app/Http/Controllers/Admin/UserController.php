@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -14,9 +15,11 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends Controller
 {
     protected $users;
-    public function __construct(User $user)
+    protected $roles;
+    public function __construct(User $user,Role $role)
     {
         $this->users = $user;
+        $this->roles = $role;
     }
     public function index()
     {
@@ -27,11 +30,14 @@ class UserController extends Controller
     public function create()
     {
         abort_if(Gate::denies("user_create"), Response::HTTP_FORBIDDEN,"403 Forbidden");
-        return view('admin.users.create');
+        $roles = $this->roles->pluck('title','id');
+        return view('admin.users.create',compact(['roles']));
     }
     public function store(StoreUserRequest $request)
     {
-        $this->users->create($request->all());
+        abort_if(Gate::denies("user_create"), Response::HTTP_FORBIDDEN,"403 Forbidden");
+        $user = $this->users->create($request->all());
+        $user->roles()->sync($request->input('roles', []));
         return redirect()->route('admin.users.index')->with('message' , 'User Create Success!');
     }
     public function show($id)

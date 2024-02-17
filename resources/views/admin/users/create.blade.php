@@ -69,65 +69,32 @@
                         </div>
                     </div>
 
-                    {{-- <div class="col-12">
-                        <table class="table table-bordered table-sm mt-5">
-                            @foreach ($roles as $role)
-                                @if ($role->title == 'Admin' || $role->title == 'Adminstrator')
-
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input type="checkbox" name="{{ strtolower($role->title) }}" id="{{ $role->title }}" class="form-check-input">
-                                                <label for="{{ $role->title }}" class="form-check-label"><span style="font-size: 0.9rem; font-weight:bold">{{ $role->title }}</span>
-                                                </label>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <span style="background-color: #0c3176!important; font-size: 0.9rem"
-                                                class="badge bg-secondary py-2 px-3 rounded-pill my-1 text-capitalize">{{ trans('cruds.user.fields.all_privilege') }}</span>
-                                        </td>
-                                    </tr>
-                                @elseif($role->title == 'Engineer')
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input type="checkbox" name="{{ strtolower($role->title) }}" id="{{ $role->title }}" class="form-check-input">
-                                                <label for="{{ $role->title }}" class="form-check-label"><span style="font-size: 0.9rem; font-weight:bold">{{ $role->title }}</span>
-                                                </label>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                            @foreach ($role->permissions as $permission)
-                                                <span style="background-color: #0c3176!important; font-size: 0.9rem"
-                                                    class="badge bg-secondary py-2 px-3 rounded-pill my-1 text-capitalize">{{ str_replace('_', ' ', $permission->title) }}</span>
-                                            @endforeach
-                                        </td>
-
-                                    </tr>
-
-                                @else
-                                    <tr>
-                                        <td class="text-nowrap">
-                                            <div class="form-check">
-                                                <input type="checkbox" name="" id="{{ $role->title }}" class="form-check-input">
-                                                <label for="{{ $role->title }}" class="form-check-label"><span style="font-size: 0.9rem; font-weight:bold">{{ $role->title }}</span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            @foreach ($role->permissions as $permission)
-                                                <span style="background-color: #0c3176!important; font-size: 0.9rem"
-                                                    class="badge bg-secondary py-2 px-3 rounded-pill my-1 text-capitalize">{{ str_replace('_', ' ', $permission->title) }}</span>
-                                            @endforeach
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                        </table>
-                    </div> --}}
-
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
+                            <label class="required" for="roles">{{ trans('cruds.role.title') }}</label>
+                            <div style="padding-bottom: 4px">
+                                <span class="btn btn-info btn-xs select-all"
+                                    style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                                <span class="btn btn-info btn-xs deselect-all"
+                                    style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                            </div>
+                            <select class="form-control select2 {{ $errors->has('roles') ? 'is-invalid' : '' }}"
+                                name="roles[]" id="roles" multiple required>
+                                @foreach ($roles as $id => $role)
+                                    <option value="{{ $id }}"
+                                        {{ in_array($id, old('roles', [])) ? 'selected' : '' }}>{{ $role }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <span class="role_error"></span>
+                            @if ($errors->has('roles'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('roles') }}
+                                </div>
+                            @endif
+                            {{-- <span class="help-block">{{ trans('cruds.role.fields.roles_helper') }}</span> --}}
+                        </div>
+                    </div>
 
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 d-flex">
                         <div class="form-group mt-2">
@@ -157,6 +124,7 @@
             let name = $('#name').val();
             let email = $('#email').val();
             let password = $('#password').val();
+            let roles = $('#roles').val();
             let arr = [];
             if (name == '') {
                 $('.name_error').html('{{ trans('cruds.user.fields.name') }} {{ trans('global.must_be_filled') }}');
@@ -186,6 +154,17 @@
                 $('.password_error').html('');
                 if (arr.includes("password")) {
                     arr.splice(arr.indexOf('password'), 1);
+                }
+            }
+
+            if (roles == '') {
+                $('.role_error').html(
+                    'Role must be filled');
+                arr.push('role');
+            } else {
+                $('.role_error').html('');
+                if (arr.includes("role")) {
+                    arr.splice(arr.indexOf('role'), 1);
                 }
             }
 
