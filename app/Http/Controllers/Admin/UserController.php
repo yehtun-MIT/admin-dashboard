@@ -24,7 +24,7 @@ class UserController extends Controller
     public function index()
     {
         abort_if(Gate::denies("user_access"), Response::HTTP_FORBIDDEN,"403 Forbidden");
-        $users = $this->users->all();
+        $users = $this->users->with('roles')->get();
         return view('admin.users.index',compact('users'));
     }
     public function create()
@@ -49,13 +49,17 @@ class UserController extends Controller
     public function edit($id)
     {
         abort_if(Gate::denies("user_edit"), Response::HTTP_FORBIDDEN,"403 Forbidden");
-        $user = $this->users->findOrFail($id);
-        return view('admin.users.edit',compact('user'));
+        $roles = $this->roles->all();
+        $user = $this->users->with('roles')->findOrFail($id);
+        return view('admin.users.edit',compact(['user','roles']));
     }
     public function update(UpdateUserRequest $request, $id)
     {
+        abort_if(Gate::denies("user_edit"), Response::HTTP_FORBIDDEN,"403 Forbidden");
         $user = $this->users->findOrFail($id);
         $user->update($request->all());
+        $user->roles()->sync($request->input('roles', []));
+
         return redirect()->route('admin.users.index')->with('message' ,'User Update Successfuly!');
     }
     public function destroy($id)

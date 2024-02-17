@@ -26,9 +26,9 @@
                                 {{ trans('cruds.user.fields.email') }}
                             </th>
 
-                            {{-- <th>
+                            <th>
                                 {{ trans('cruds.user.fields.roles') }}
-                            </th> --}}
+                            </th>
                             <th>
                                 &nbsp;
                             </th>
@@ -43,17 +43,16 @@
                                 <td>
                                     {{ $user->email ?? '' }}
                                 </td>
-                                {{-- <td>
+                                <td>
                                     @foreach ($user->roles as $key => $item)
                                         <span class="badge bg-info my-1 rounded-pill">{{ $item->title }}</span>
                                     @endforeach
-                                </td> --}}
+                                </td>
                                 <td>
                                     @can('user_show')
                                         <a class="p-0 glow text-white btn btn-info"
                                             style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="view" href="{{ route('admin.users.show', $user->id) }}">
-                                            {{-- <i class='bx bx-show text-primary'></i> --}}
                                             Show
                                         </a>
                                     @endcan
@@ -62,7 +61,6 @@
                                         <a class="p-0 glow text-white btn btn-warning"
                                             style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="edit" href="{{ route('admin.users.edit', $user->id) }}">
-                                            {{-- <i class='bx bx-edit text-success'></i> --}}
                                             Edit
                                         </a>
                                     @endcan
@@ -81,7 +79,6 @@
                                                 style="width: 60px;display: inline-block;line-height: 36px;border:none;color:grey;"
                                                 class=" p-0 glow text-white btn btn-danger" title="delete"
                                                 onclick="event.preventDefault(); document.getElementById('orderDelete-{{ $user->id }}').submit();">
-                                                {{-- <i class="bx bx-trash text-danger"></i> --}}
                                                 Delete
                                             </button>
                                         </form>

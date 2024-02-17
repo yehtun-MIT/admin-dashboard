@@ -15,12 +15,6 @@ class UpdateUserRequest extends FormRequest
     {
         return true;
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return [
@@ -28,9 +22,8 @@ class UpdateUserRequest extends FormRequest
                 'string',
                 'required',
             ],
-            'email' => [
-                'required',
-                'unique:users,email,' . request()->route('user')->id,
+            'password' => [
+                'required'
             ],
         ];
     }
