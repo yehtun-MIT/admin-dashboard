@@ -50,10 +50,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 grid-margin stretch-card">
+    {{-- <div class="col-md-6 grid-margin stretch-card">
       <div class="card tale-bg">
         <div class="card-people mt-auto">
-          <img src="images/dashboard/people.svg" alt="people">
+          <img src="{{asset('dashboard/images/dashboard/people.svg')}}" alt="people">
           <div class="weather-info">
             <div class="d-flex">
               <div>
@@ -67,8 +67,8 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6 grid-margin transparent">
+    </div> --}}
+    <div class="col-md-12 grid-margin transparent">
       <div class="row">
         <div class="col-md-6 mb-4 stretch-card transparent">
           <div class="card card-tale">
@@ -111,7 +111,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  {{-- <div class="row">
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
@@ -152,7 +152,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> --}}
   <div class="row">
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card position-relative">
@@ -171,7 +171,7 @@
                     </div>
                   <div class="col-md-12 col-xl-9">
                     <div class="row">
-                      <div class="col-md-6 border-right">
+                      <div class="col-md-12 border-right">
                         <div class="table-responsive mb-3 mb-md-0 mt-3">
                           <table class="table table-borderless report-table">
                             <tr>
@@ -231,10 +231,10 @@
                           </table>
                         </div>
                       </div>
-                      <div class="col-md-6 mt-3">
+                      {{-- <div class="col-md-6 mt-3">
                         <canvas id="north-america-chart"></canvas>
                         <div id="north-america-legend"></div>
-                      </div>
+                      </div> --}}
                     </div>
                   </div>
                 </div>
@@ -585,7 +585,7 @@
           <ul class="icon-data-list">
             <li>
               <div class="d-flex">
-                <img src="images/faces/face1.jpg" alt="user">
+                <img src="{{asset('dashboard/images/faces/face1.jpg')}}" alt="user">
                 <div>
                   <p class="text-info mb-1">Isabella Becker</p>
                   <p class="mb-0">Sales dashboard have been created</p>
@@ -595,7 +595,7 @@
             </li>
             <li>
               <div class="d-flex">
-                <img src="images/faces/face2.jpg" alt="user">
+                <img src="{{asset('dashboard/images/faces/face2.jpg')}}" alt="user">
                 <div>
                   <p class="text-info mb-1">Adam Warren</p>
                   <p class="mb-0">You have done a great job #TW111</p>
@@ -605,7 +605,7 @@
             </li>
             <li>
               <div class="d-flex">
-              <img src="images/faces/face3.jpg" alt="user">
+              <img src="{{asset('dashboard/images/faces/face3.jpg')}}" alt="user">
              <div>
               <p class="text-info mb-1">Leonard Thornton</p>
               <p class="mb-0">Sales dashboard have been created</p>
@@ -615,7 +615,7 @@
             </li>
             <li>
               <div class="d-flex">
-                <img src="images/faces/face4.jpg" alt="user">
+                <img src="{{asset('dashboard/images/faces/face4.jpg')}}" alt="user">
                 <div>
                   <p class="text-info mb-1">George Morrison</p>
                   <p class="mb-0">Sales dashboard have been created</p>
@@ -625,7 +625,7 @@
             </li>
             <li>
               <div class="d-flex">
-                <img src="images/faces/face5.jpg" alt="user">
+                <img src="{{asset('dashboard/images/faces/face5.jpg')}}" alt="user">
                 <div>
                 <p class="text-info mb-1">Ryan Cortez</p>
                 <p class="mb-0">Herbs are fun and easy to grow.</p>

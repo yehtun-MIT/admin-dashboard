@@ -2,9 +2,12 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header">
+    {{-- <div class="card-header mb-5">
         {{ trans('global.show') }} {{ trans('cruds.user.title') }}
-    </div>
+    </div> --}}
+    <h6 class="font-weight-bold card-header mb-5">
+        {{ trans('global.show') }} {{ trans('cruds.user.title') }}
+    </h6>
 
     <div class="card-body">
         <div class="form-group">

@@ -15,9 +15,10 @@
 @endsection
 @section('content')
     <div class="card">
-        <div class="card-header">
+        <h5 class="card-header font-weight-bold mb-4"> {{ trans('global.edit') }} {{ trans('cruds.permission.title_singular') }}</h5>
+        {{-- <div class="card-header">
             {{ trans('global.create') }} {{ trans('cruds.permission.title_singular') }}
-        </div>
+        </div> --}}
 
         <div class="card-body">
             <form method="POST" action="{{ route('admin.permissions.update',$permission->id) }}" enctype="multipart/form-data" id="myForm">

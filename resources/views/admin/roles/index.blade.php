@@ -2,7 +2,7 @@
 @section('content')
     <div class="card">
         <div class="custom-header">
-            {{ trans('cruds.role.title_singular') }} {{ trans('global.list') }}
+           <h5 class=" font-weight-bold "> {{ trans('cruds.role.title_singular') }} {{ trans('global.list') }}</h5>
             {{-- @can('role_create') --}}
                 <div style="margin-bottom: 10px;" class="row">
                     <div class="col-lg-12">
@@ -18,8 +18,8 @@
             <div class="table-responsive">
                 <table class=" table table-bordered table-striped table-hover datatable datatable-Role">
                     <thead>
-                        <tr>
-                            <th>
+                        <tr >
+                            <th class="col-2">
                                 {{ trans('cruds.role.fields.title') }}
                             </th>
                             <th>
