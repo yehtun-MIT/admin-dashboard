@@ -65,4 +65,15 @@ return [
             'all_privilege'            => 'All Privillege'
         ],
     ],
+    'auditlog' => [
+        'title'          => 'Audit Logs',
+        'title_singular' => 'Audit Logs',
+        'fields'         => [
+            'id'                       => 'ID',
+            'name'                     => 'Name',
+            'email'                    => 'Email',
+            'login_time'        => 'LogIn Time',
+            'logout_time'            => 'LogOut Time'
+        ],
+    ],
 ];

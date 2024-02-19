@@ -2,8 +2,7 @@
 @section('content')
     <div class="card">
         <div class="custom-header">
-            <h5 class=" font-weight-bold ">   {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}</h5>
-           
+            {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
             @can('user_create')
                 <div style="margin-bottom: 10px;" class="row">
                     <div class="col-lg-12">
