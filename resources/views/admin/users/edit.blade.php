@@ -18,9 +18,10 @@
 @endsection
 @section('content')
     <div class="card">
-        <div class="card-header">
+        <h5 class="card-header font-weight-bold mb-4"> {{ trans('global.edit') }} {{ trans('cruds.user.title_singular') }}</h5>
+        {{-- <div class="card-header">
             {{ trans('global.edit') }} {{ trans('cruds.user.title_singular') }}
-        </div>
+        </div> --}}
 
         <div class="card-body">
             <form method="POST" action="{{ route('admin.users.update', [$user->id]) }}" enctype="multipart/form-data"

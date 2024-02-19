@@ -2,7 +2,8 @@
 @section('content')
     <div class="card">
         <div class="custom-header">
-            {{ trans('cruds.permission.title_singular') }} {{ trans('global.list') }}
+            <h5 class=" font-weight-bold ">  {{ trans('cruds.permission.title_singular') }} {{ trans('global.list') }}</h5>
+           
             @can('permission_create')
                 <div style="margin-bottom: 10px;" class="row">
                     <div class="col-lg-12">
@@ -54,7 +55,7 @@
                                     @can('permission_delete')
                                         <form id="orderDelete-{{ $permission->id }}"
                                             action="{{ route('admin.permissions.destroy', $permission->id) }}" method="POST"
-                                            onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                            onsubmit=""
                                             style="display: inline-block;">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -64,7 +65,7 @@
                                             <button
                                                 style="width: 60px;display: inline-block;line-height: 36px;border:none;"
                                                 class=" p-0 glow btn btn-danger text-white" title="delete"
-                                                onclick="event.preventDefault(); document.getElementById('orderDelete-{{ $permission->id }}').submit();">
+                                                onclick="return confirm('{{ trans('global.areYouSure') }}');">
                                                 Delete
                                             </button>
                                         </form>

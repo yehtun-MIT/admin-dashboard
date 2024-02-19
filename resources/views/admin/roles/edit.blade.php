@@ -16,10 +16,7 @@
 @endsection
 @section('content')
     <div class="card">
-        <div class="card-header">
-            {{ trans('global.edit') }} {{ trans('cruds.role.title_singular') }}
-        </div>
-
+            <h5 class="card-header font-weight-bold mb-4">{{ trans('global.edit') }} {{ trans('cruds.role.title_singular') }}</h5>
         <div class="card-body">
             <form method="POST" action="{{ route('admin.roles.update', [$role->id]) }}" enctype="multipart/form-data"
                 id="myForm">
