@@ -63,14 +63,14 @@
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-        <li class="nav-item {{ Request::is('admin/permissions*') ? 'active' : '' }} {{ Request::is('admin/roles*') ? 'active' : '' }} {{ Request::is('admin/users*') ? 'active' : '' }}">
+        <li class="nav-item {{ Request::is('admin/permissions*') ? 'active' : '' }} {{ Request::is('admin/roles*') ? 'active' : '' }} {{ Request::is('admin/users*') ? 'active' : '' }} {{ Request::is('admin/audit_logs*') ? 'active' : '' }}">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i class="icon-layout menu-icon"></i>
                 <span class="menu-title">User Management</span>
                 <i class="menu-arrow"></i>
             </a>
 
-            <div class="collapse {{ Request::is('admin/permissions*') ? 'show' : '' }} {{ Request::is('admin/roles*') ? 'show' : '' }} {{ Request::is('admin/users*') ? 'show' : '' }}" id="ui-basic">
+            <div class="collapse {{ Request::is('admin/permissions*') ? 'show' : '' }} {{ Request::is('admin/roles*') ? 'show' : '' }} {{ Request::is('admin/users*') ? 'show' : '' }} {{ Request::is('admin/audit_logs*') ? 'show' : '' }}" id="ui-basic">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item {{ Request::is('admin/permissions*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.permissions.index') }}">Permissions</a>
@@ -80,6 +80,9 @@
                     </li>
                     <li class="nav-item {{ Request::is('admin/users*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('admin.users.index') }}">Users</a>
+                    </li>
+                    <li class="nav-item {{ Request::is('admin/audit_logs*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('admin.audit_logs.index') }}">Audit Logs</a>
                     </li>
                 </ul>
             </div>
