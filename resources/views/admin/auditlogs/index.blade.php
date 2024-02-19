@@ -1,1 +1,4 @@
-<p>Hello World</p>
+@extends('layouts.admin')
+@section('content')
+    <p>Hello World!</p>
+@endsection
