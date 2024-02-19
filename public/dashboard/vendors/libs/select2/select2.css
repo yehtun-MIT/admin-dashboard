@@ -212,7 +212,8 @@ html:not([dir=rtl]) .select2-container--default .select2-selection--single .sele
   display: block;
   list-style: none;
   width: 100%;
-  border: 1px solid gray;
+  border: 1px solid #80808061;
+  border-radius: 5px;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
   list-style: none;

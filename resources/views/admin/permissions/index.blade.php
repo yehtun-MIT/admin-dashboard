@@ -36,7 +36,7 @@
                                 <td>
                                     
                                     @can('permission_show')
-                                        <a class="p-0 glow btn btn-info text-white"
+                                        <a class="p-0 glow btn btn-primary text-white"
                                             style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="view" href="{{ route('admin.permissions.show', $permission->id) }}">
                                             Show
@@ -44,7 +44,7 @@
                                     @endcan
 
                                     @can('permission_edit')
-                                        <a class="p-0 glow btn btn-warning text-white"
+                                        <a class="p-0 glow btn btn-success text-white"
                                             style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="edit" href="{{ route('admin.permissions.edit', $permission->id) }}">
                                             Edit
