@@ -15,9 +15,11 @@ class LogoutEvent
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $userId;
-    public function __construct($userId)
+    public $loginId;
+    public function __construct($userId , $loginId)
     {
         $this->userId = $userId;
+        $this->loginId = $loginId;
     }
 
     public function broadcastOn()

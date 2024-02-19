@@ -17,12 +17,14 @@ class LoginEvent
     public $userId;
     public $username;
     public $email;
+    public $loginId;
     
-    public function __construct($userId ,$username , $email)
+    public function __construct($userId ,$username , $email ,$loginId)
     {
         $this->username = $username;
         $this->email = $email;
         $this->userId = $userId;
+        $this->loginId = $loginId;
     }
 
     public function broadcastOn()

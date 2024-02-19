@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\LoginEvent;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -16,7 +17,7 @@ class LoginListener
         //
     }
 
-    public function handle($event)
+    public function handle(LoginEvent $event)
     {
         $serverTime = Carbon::now(); // Server time
         $localTime = $serverTime->tz('Asia/Yangon'); // Convert to Myanmar (Yangon) time
@@ -32,8 +33,7 @@ class LoginListener
             'created_at' => $localTime->toDateTimeLocalString(),
             'updated_at' => $localTime->toDateTimeLocalString(),
         ]);
-
-        $this->login_id = $login_id;
+        $event->loginId = $login_id;
     }
 
     // public function logout($event){

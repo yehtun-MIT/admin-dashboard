@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\LogoutEvent;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -19,7 +20,7 @@ class LogoutListener
         //
     }
 
-    public function handle($event)
+    public function handle(LogoutEvent $event)
     {
         $userId = $event->userId;
 
@@ -28,8 +29,8 @@ class LogoutListener
         $localTime = $serverTime->tz('Asia/Yangon');
 
         DB::table('login_history')
-            ->where('user_id', $userId)
-            ->whereNull('log_out_time') // Update only if log_out is null
+            ->where('id', $event->loginId)
+            ->whereNull('log_out_time') 
             ->update([
                 'log_out_time' => $localTime->toDateTimeLocalString(),
                 'updated_at' => $localTime->toDateTimeLocalString(),
