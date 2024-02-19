@@ -50,7 +50,7 @@
                                 </td>
                                 <td>
                                     @can('user_show')
-                                        <a class="p-0 glow text-white btn btn-info"
+                                        <a class="p-0 glow text-white btn btn-primary"
                                             style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="view" href="{{ route('admin.users.show', $user->id) }}">
                                             Show
@@ -58,7 +58,7 @@
                                     @endcan
 
                                     @can('user_edit')
-                                        <a class="p-0 glow text-white btn btn-warning"
+                                        <a class="p-0 glow text-white btn btn-success"
                                             style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
                                             title="edit" href="{{ route('admin.users.edit', $user->id) }}">
                                             Edit
@@ -68,7 +68,6 @@
                                     @can('user_delete')
                                         <form id="orderDelete-{{ $user->id }}"
                                             action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
-                                            onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
                                             style="display: inline-block;">
                                             <input type="hidden" name="_method" value="DELETE">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -78,7 +77,7 @@
                                             <button
                                                 style="width: 60px;display: inline-block;line-height: 36px;border:none;color:grey;"
                                                 class=" p-0 glow text-white btn btn-danger" title="delete"
-                                                onclick="event.preventDefault(); document.getElementById('orderDelete-{{ $user->id }}').submit();">
+                                                onclick="return confirm('{{ trans('global.areYouSure') }}');">
                                                 Delete
                                             </button>
                                         </form>

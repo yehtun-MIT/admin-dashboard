@@ -43,7 +43,7 @@ class UserController extends Controller
     public function show($id)
     {
         abort_if(Gate::denies("user_show"), Response::HTTP_FORBIDDEN,"403 Forbidden");
-        $user = $this->users->findOrFail($id);
+        $user = $this->users->with('roles')->findOrFail($id);
         return view('admin.users.show',compact('user'));
     }
     public function edit($id)
@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         abort_if(Gate::denies("user_delete"), Response::HTTP_FORBIDDEN,"403 Forbidden");
         $user = $this->users->findOrFail($id);
-        $user->destroy($id);
+        $user->delete();
         return redirect()->route('admin.users.index')->with('message' ,'User Delete Successfuly!');
     }
     public function massDestroy(MassDestroyUserRequest $request)

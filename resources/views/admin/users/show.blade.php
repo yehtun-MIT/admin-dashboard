@@ -47,16 +47,16 @@
                             {{ $user->email_verified_at }}
                         </td>
                     </tr>
-                    {{-- <tr>
+                    <tr>
                         <th>
                             {{ trans('cruds.user.fields.roles') }}
                         </th>
                         <td>
                             @foreach($user->roles as $key => $roles)
-                                <span class="label label-info">{{ $roles->title }}</span>
+                                <span class="label label-info badge bg-info my-1 rounded-pill">{{ $roles->title }}</span>
                             @endforeach
                         </td>
-                    </tr> --}}
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
