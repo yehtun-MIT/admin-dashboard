@@ -1,4 +1,18 @@
 @extends('layouts.admin')
+@section('styles')
+    <style>
+        .title_error {
+            color: red;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        .required:after {
+            content: " *";
+            color: red;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="card">
         <div class="custom-header">
@@ -14,7 +28,7 @@
                         <div class="form-group">
                             <label class="required" for="name">{{ trans('cruds.user.fields.name') }}</label>
                             <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text"
-                                name="name" id="name" value="{{ old('name', auth()->user()->name) }}" required>
+                                name="name" id="name" value="{{ old('name', auth()->user()->name) }}" >
                             <span class="name_error"></span>
                             @if ($errors->has('name'))
                                 <div class="invalid-feedback">
@@ -29,7 +43,7 @@
                         <div class="form-group">
                             <label class="required" for="email">{{ trans('cruds.user.fields.email') }}</label>
                             <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email"
-                                name="email" id="email" value="{{ old('email', auth()->user()->email) }}" required>
+                                name="email" id="email" value="{{ old('email', auth()->user()->email) }}" >
                             <span class="email_error"></span>
                             @if ($errors->has('email'))
                                 <div class="invalid-feedback">
@@ -41,25 +55,29 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="form-group">
+                            <label class="required" for="role">Role</label>
+                            <input class="form-control {{ $errors->has('role') ? 'is-invalid' : '' }}" type="role"
+                                name="role" id="role" value="{{ old('role', auth()->user()->roles()->first()->title) }}" disabled >
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <div class="form-group">
                             <label class="required" for="email">{{ trans('cruds.user_info.fields.avatar') }}</label>
-                            {{-- <input type="file" name="" id=""> --}}
                             <div class="col-12">
-                                <button class="btn btn-primary rounded">Choose File here</button>
+                                <input class="btn btn-primary rounded" type="file">
                             </div>
                             <div class="col-6 mt-4">
-                                <img src="{{ asset('image/cartoon.jpg') }}" alt=""
-                                    style="width: 200px;heigh:200px;border-radius:50%">
+                            <img src="{{ asset('dashboard/images/users/user.png') }}" alt="profile"  style="width: 200px;heigh:200px;border-radius:50%" />
+
+                                {{-- <img src="{{ asset('image/cartoon.jpg') }}" alt="" > --}}
                             </div>
-
-
                         </div>
                     </div>
 
                     <div class="col-md-12 d-flex flex-row-reverse">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="" class="btn btn-primary">
                             {{ trans('global.save_change') }}
                         </button>
-
                     </div>
                 </div>
             </form>
@@ -69,8 +87,8 @@
         <div class="custom-header">
             <h5 class="font-weight-bold">{{ trans('cruds.user_info.fields.change_password') }}</h5>
         </div>
-        {{-- <div class="card-body">
-            <form method="POST" action="{{ route('admin.users.update', [Auth()->user()->id]) }}"
+        <div class="card-body">
+            <form method="POST" action="{{ route('admin.user_info.updatePassword', [Auth()->user()->id]) }}"
                 enctype="multipart/form-data" id="">
                 @method('PUT')
                 @csrf
@@ -79,12 +97,12 @@
                         <div class="form-group">
                             <label class="required"
                                 for="name">{{ trans('cruds.user_info.fields.current_password') }}</label>
-                            <input type="password" class="form-control" name="password" id="">
+                            <input type="password" class="form-control {{ $errors->has('current_password') ? 'is-invalid' : '' }}" name="current_password" id="">
                             
-                            <span class="password_error"></span>
-                            @if ($errors->has('password'))
+                            <span class="current_password_error"></span>
+                            @if ($errors->has('current_password'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('password') }}
+                                    {{ $errors->first('current_password') }}
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.user.fields.password_helper') }}</span>
@@ -95,11 +113,11 @@
                         <div class="form-group">
                             <label class="required"
                                 for="email">{{ trans('cruds.user_info.fields.new_password') }}</label>
-                            <input type="password" class="form-control" name="password" id="">
-                            <span class="password_error"></span>
-                            @if ($errors->has('password'))
+                            <input type="password" class="form-control  {{ $errors->has('new_password') ? 'is-invalid' : '' }}" name="new_password" id="">
+                            <span class="new_password_error"></span>
+                            @if ($errors->has('new_password'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('password') }}
+                                    {{ $errors->first('new_password') }}
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.user.fields.password_helper') }}</span>
@@ -107,33 +125,26 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="form-group">
-                            <label class="required"
-                                for="email">{{ trans('cruds.user_info.fields.confirm_password') }}</label>
-
-                            <input type="password" class="form-control" name="confirm_password" id="">
+                            <label class="required"  for="confirm_password">{{ trans('cruds.user_info.fields.confirm_password') }}</label>
+                            <input type="password" class="form-control {{ $errors->has('confirm_password') ? 'is-invalid' : '' }}" name="confirm_password" id="">
                             <span class="password_error"></span>
-                            @if ($errors->has('password'))
+                            @if ($errors->has('confirm_password'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('password') }}
+                                    {{ $errors->first('confirm_password') }}
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.user.fields.password_helper') }}</span>
-                           
-
-
                         </div>
                     </div>
-
-
                     <div class="col-md-12 d-flex flex-row-reverse">
-                        <button type="button" class="btn btn-primary ">
+                        <button type="submit" class="btn btn-primary ">
                             {{ trans('global.save_change') }}
                         </button>
 
                     </div>
                 </div>
             </form>
-        </div> --}}
+        </div>
     </div>
 @endsection
 

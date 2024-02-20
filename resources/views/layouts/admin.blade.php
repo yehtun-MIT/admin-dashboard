@@ -161,7 +161,6 @@
             @include('partials.menu')
             <div class="main-panel">
                 <div class="content-wrapper">
-                    @yield('content')
                     <div>
                         @if (session('message'))
                             <div class="mb-2">
@@ -194,8 +193,7 @@
                             </div>
                         @endif
                     </div>
-                    
-                    
+                    @yield('content')
                 </div>
             </div>
         </div>

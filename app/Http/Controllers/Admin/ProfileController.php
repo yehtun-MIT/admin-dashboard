@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -22,8 +24,7 @@ class ProfileController extends Controller
         $this->roles = $role;
     }
     public function updateProfile(UpdateProfileRequest $request,$id){
-        // abort_if(Gate::denies("user_edit"), Response::HTTP_FORBIDDEN,"403 Forbidden");
-        // dd($request->all());
+        abort_if(Gate::denies("user_edit"), Response::HTTP_FORBIDDEN,"403 Forbidden");
         $name = $request->name;
         $email = $request->email;
         $password = auth()->user()->password;
@@ -33,8 +34,18 @@ class ProfileController extends Controller
             'email' => $email,
             'password' => $password,
         ]);
-        // return redirect()->route('admin.user_info.updateProfile', ['id' => $id])->with('message', 'User profile updated successfully!');
-        return redirect()->route('admin.user_info.index')->with('message', 'User profile updated successfully!');
-        // $user->roles()->sync($request->input('roles', []));
+        return redirect()->back()->with('message', 'User profile updated successfully!');
+    }
+    
+    public function updatePassword(UpdatePasswordRequest $request,$id)
+    {
+        $user = User::find($id);
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'The current password is incorrect.']);
+        }
+        $user->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+        return redirect()->back()->with('message', 'Password updated successfully');
     }
 }

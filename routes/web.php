@@ -41,7 +41,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     //Profile
     Route::get('user_info/index', function () { return view('admin.usersetting.index'); })->name('user_info.index');
     Route::put('user_info/edit/profile/{id}', 'ProfileController@updateProfile')->name('user_info.updateProfile');
-    // Route::put('user_info/edit/profile/{id}','ProfileController@updateProfile')->name('user_info.updateProfile');
+    Route::put('user_info/updatePassword/{id}','ProfileController@updatePassword')->name('user_info.updatePassword');
 
     // Permission
     Route::delete('permissions/destroy', 'PermissionController@massDestroy')->name('permissions.massDestroy');
