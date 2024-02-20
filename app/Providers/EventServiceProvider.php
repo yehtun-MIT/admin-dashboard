@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\AutoLogoutEvent;
 use App\Events\LoginEvent;
 use App\Events\LogoutEvent;
+use App\Listeners\AutoLogoutListener;
 use App\Listeners\LoginListener;
 use App\Listeners\LogoutListener;
 use Illuminate\Auth\Events\Registered;
@@ -27,6 +29,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         LogoutEvent::class => [
             LogoutListener::class,
+        ],
+        AutoLogoutEvent::class => [
+            AutoLogoutListener::class,
         ],
     ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\AutoLogoutEvent;
 use App\Events\LoginEvent;
 use App\Events\LogoutEvent;
 use App\Http\Controllers\Controller;
@@ -28,6 +29,7 @@ class LoginController extends Controller
     
     public function logout(Request $request)
     {
+        dd($request->all());
         $user = auth()->user();
         
         if ($user) {
@@ -37,7 +39,7 @@ class LoginController extends Controller
         $this->guard()->logout();
         $request->session()->invalidate();
         if (! $request->is('logout')) {
-            event(new LogoutEvent($user->id, Session::get('loginId')));
+            event(new AutoLogoutEvent($user->id, Session::get('loginId')));
         }
         return $this->loggedOut($request) ?: redirect('/');
     }
