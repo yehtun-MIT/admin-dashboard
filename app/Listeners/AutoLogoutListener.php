@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AutoLogoutListener
 {
@@ -19,6 +20,9 @@ class AutoLogoutListener
     {
         $userId = $event->userId;
 
+        Log::info('AutoLogoutListener handle method called');
+        Log::info('UserID: ' . $event->userId);
+        Log::info('LoginID: ' . $event->loginId);
         // Log logout time
         $serverTime = Carbon::now();
         $localTime = $serverTime->tz('Asia/Yangon');
@@ -31,6 +35,6 @@ class AutoLogoutListener
                 'updated_at' => $localTime->toDateTimeLocalString(),
             ]);
 
-        session()->forget('loginId');
+        session()->forget('loginId');   
     }
 }

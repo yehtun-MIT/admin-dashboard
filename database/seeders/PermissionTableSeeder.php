@@ -84,6 +84,14 @@ class PermissionTableSeeder extends Seeder
             [
                 'id'    => 17,
                 'title' =>'audit_logs_access'
+            ],
+            [
+                'id'    => 18,
+                'title' =>'audit_logs_show'
+            ],
+            [
+                'id'    => 19,
+                'title' =>'audit_logs_delete'
             ]
         ];
 

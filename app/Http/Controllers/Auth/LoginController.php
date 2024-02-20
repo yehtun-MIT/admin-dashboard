@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use PSpell\Config;
 
 class LoginController extends Controller
 {
@@ -29,7 +31,6 @@ class LoginController extends Controller
     
     public function logout(Request $request)
     {
-        dd($request->all());
         $user = auth()->user();
         
         if ($user) {
@@ -38,9 +39,17 @@ class LoginController extends Controller
 
         $this->guard()->logout();
         $request->session()->invalidate();
-        if (! $request->is('logout')) {
+
+        $sessionLifetimeMinutes = config('session.lifetime');
+
+
+        if ($sessionLifetimeMinutes) {
             event(new AutoLogoutEvent($user->id, Session::get('loginId')));
+        }else
+        {
+            dd("Error");
         }
+
         return $this->loggedOut($request) ?: redirect('/');
     }
 }
