@@ -28,7 +28,6 @@ class LoginController extends Controller
     
     public function logout(Request $request)
     {
-        dd($request->all());
         $user = auth()->user();
         
         if ($user) {
