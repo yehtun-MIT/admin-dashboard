@@ -134,7 +134,7 @@
                     //[1, 'desc']
                 ],
                 pageLength: 100,
-                bPaginate:false,
+                bPaginate:true,
                 info:false,
             });
             let table = $('.datatable-Permission:not(.ajaxTable)').DataTable({

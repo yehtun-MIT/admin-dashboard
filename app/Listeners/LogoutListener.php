@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class LogoutListener
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
     public function __construct()
     {
         //
@@ -35,5 +30,7 @@ class LogoutListener
                 'log_out_time' => $localTime->toDateTimeLocalString(),
                 'updated_at' => $localTime->toDateTimeLocalString(),
             ]);
+
+        session()->forget('loginId');
     }
 }

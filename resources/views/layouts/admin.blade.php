@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="{{ asset('dashboard/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/css/vertical-layout-light/style.css') }}">
     <link rel="stylesheet" href="{{ asset('dashboard/images/favicon.png') }}">
+  <link rel="stylesheet" href="{{   asset('dashboard/vendors/mdi/css/materialdesignicons.min.css')}}">
+
 
     <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('dashboard/css/rtl/core.css') }}" />

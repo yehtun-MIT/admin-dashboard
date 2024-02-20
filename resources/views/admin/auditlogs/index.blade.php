@@ -2,36 +2,42 @@
 @section('content')
     <div class="card">
         <div class="custom-header">
-            <h5 class=" font-weight-bold ">   {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}</h5>
-           
-            @can('user_create')
-                <div style="margin-bottom: 10px;" class="row">
-                    <div class="col-lg-12">
-                        <a class="btn btn-success" href="{{ route('admin.users.create') }}">
-                            {{ trans('global.add') }} {{ trans('cruds.user.title_singular') }}
-                        </a>
-                    </div>
-                </div>
-            @endcan
+            <h5 class=" font-weight-bold "> {{ trans('cruds.auditLogs.log') }} {{ trans('global.list') }}</h5>
         </div>
 
         <div class="card-body">
             <div class="table-responsive">
                 <table class=" table table-bordered table-striped table-hover datatable datatable-User">
-                    <thead>
+                    <thead class="text-center">
+                        <tr>
+                            <th rowspan="2">
+                                {{ trans('cruds.auditLogs.fields.name') }}
+                            </th>
+                            <th rowspan="2">
+                                {{ trans('cruds.auditLogs.fields.email') }}
+                            </th>
+                            <th colspan="2">
+                                {{ trans('cruds.auditLogs.fields.login_time') }}
+                            </th>
+                            <th colspan="2">
+                                {{ trans('cruds.auditLogs.fields.logout_time') }}
+                            </th>
+                            {{-- <th>
+                                &nbsp;
+                            </th> --}}
+                        </tr>
                         <tr>
                             <th>
-                                {{ trans('cruds.user.fields.name') }}
+                                Date
                             </th>
                             <th>
-                                {{ trans('cruds.user.fields.email') }}
-                            </th>
-
-                            <th>
-                                {{ trans('cruds.user.fields.logout_time') }}
+                                Time
                             </th>
                             <th>
-                                &nbsp;
+                                Date
+                            </th>
+                            <th>
+                                Time
                             </th>
                         </tr>
                     </thead>
@@ -39,52 +45,22 @@
                         @foreach ($auditlogs as $key => $user)
                             <tr data-entry-id="{{ $user->id }}">
                                 <td>
-                                    {{ $user->name ?? '' }}
+                                    <span class="badge bg-info my-1 rounded-pill">{{ $user->name ?? '' }}</span>
+                                    
                                 </td>
                                 <td>
                                     {{ $user->email ?? '' }}
                                 </td>
-                                <td>
-                                    {{-- @foreach ($user->roles as $key => $item)
-                                        <span class="badge bg-info my-1 rounded-pill">{{ $item->title }}</span>
-                                    @endforeach --}}
-                                    {{ $user->log_out_time ?? '' }}
-                                </td>
-                                <td>
-                                    @can('user_show')
-                                        <a class="p-0 glow text-white btn btn-primary"
-                                            style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
-                                            title="view" href="{{ route('admin.users.show', $user->id) }}">
-                                            Show
-                                        </a>
-                                    @endcan
+                                <td>{{ optional($user->created_at)->format('Y-m-d') ?? '' }}</td>
+                                <td>{{ optional($user->created_at)->format('h:i A') ?? '' }}</td>
+                                @if ($user->log_out_time)
+                                    <td> {{ \Carbon\Carbon::parse($user->log_out_time)->format('Y-m-d') ?? '' }}</td>
 
-                                    @can('user_edit')
-                                        <a class="p-0 glow text-white btn btn-success"
-                                            style="width: 60px;display: inline-block;line-height: 36px;color:grey;"
-                                            title="edit" href="{{ route('admin.users.edit', $user->id) }}">
-                                            Edit
-                                        </a>
-                                    @endcan
-
-                                    @can('user_delete')
-                                        <form id="orderDelete-{{ $user->id }}"
-                                            action="{{ route('admin.users.destroy', $user->id) }}" method="POST"
-                                            style="display: inline-block;">
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                            <input type="hidden"
-                                                style="width: 60px;display: inline-block;line-height: 36px;"
-                                                class=" p-0 glow text-white " value="{{ trans('global.delete') }}">
-                                            <button
-                                                style="width: 60px;display: inline-block;line-height: 36px;border:none;color:grey;"
-                                                class=" p-0 glow text-white btn btn-danger" title="delete"
-                                                onclick="return confirm('{{ trans('global.areYouSure') }}');">
-                                                Delete
-                                            </button>
-                                        </form>
-                                    @endcan
-                                </td>
+                                    <td> {{ \Carbon\Carbon::parse($user->log_out_time)->format('h:i A') ?? '' }}</td>
+                                @else
+                                    <td> </td>
+                                    <td> </td>
+                                @endif
 
                             </tr>
                         @endforeach
@@ -145,11 +121,11 @@
             $.extend(true, $.fn.dataTable.defaults, {
                 orderCellsTop: true,
                 order: [
-                    //[1, 'desc']
+                    [1, 'desc']
                 ],
                 pageLength: 100,
-                bPaginate:false,
-                info:false,
+                bPaginate: true,
+                info: false,
             });
             let table = $('.datatable-User:not(.ajaxTable)').DataTable({
                 buttons: dtButtons

@@ -10,7 +10,7 @@ class AuditLogsController extends Controller
 {
     public function index(){
         $auditlogs=AuditLog::all();
-       
+        
         return view('admin.auditlogs.index',compact('auditlogs'));
     }
 }

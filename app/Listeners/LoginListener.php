@@ -5,6 +5,7 @@ namespace App\Listeners;
 use App\Events\LoginEvent;
 use Carbon\Carbon;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Session;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\DB;
 
@@ -34,21 +35,8 @@ class LoginListener
             'updated_at' => $localTime->toDateTimeLocalString(),
         ]);
         $event->loginId = $login_id;
+        session(['loginId' => $event->loginId]);
     }
 
-    // public function logout($event){
-    //     $userId = $event->userId;
-    //     // Log logout time
-    //     $serverTime = Carbon::now();
-    //     $localTime = $serverTime->tz('Asia/Yangon');
-
-    //     DB::table('login_history')
-    //         ->where('id', $this->login_id) // use the login_id obtained during login
-    //         ->whereNull('log_out_time') // Update only if log_out is null
-    //         ->update([
-    //             'log_out_time' => $localTime->toDateTimeLocalString(),
-    //             'updated_at' => $localTime->toDateTimeLocalString(),
-    //         ]);
-    // }
 }
 
