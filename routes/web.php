@@ -30,30 +30,35 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
 
     // User
     Route::delete('users/destroy', 'UserController@massDestroy')->name('users.massDestroy');
-    Route::resource('users','UserController');
+    Route::resource('users', 'UserController');
+
+    //Profile
+    Route::get('user_info/index', function () { return view('admin.usersetting.index'); })->name('user_info.index');
+    Route::put('user_info/edit/profile/{id}', 'ProfileController@updateProfile')->name('user_info.updateProfile');
+    // Route::put('user_info/edit/profile/{id}','ProfileController@updateProfile')->name('user_info.updateProfile');
 
     // Permission
     Route::delete('permissions/destroy', 'PermissionController@massDestroy')->name('permissions.massDestroy');
-    Route::resource('permissions','PermissionController');
+    Route::resource('permissions', 'PermissionController');
 
     // Roles
     Route::delete('roles/destroy', 'RoleController@massDestroy')->name('roles.massDestroy');
-    Route::resource('roles','RoleController');
+    Route::resource('roles', 'RoleController');
 
     // AuditLogs
     Route::delete('audit_logs/destroy', 'AuditLogsController@massDestroy')->name('audit_logs.massDestroy');
-    Route::resource('audit_logs','AuditLogsController');
+    Route::resource('audit_logs', 'AuditLogsController');
 
     Route::post('posts/media', 'PostController@storeMedia')->name('posts.storeMedia');
     Route::post('posts/ckmedia', 'PostController@storeCKEditorImages')->name('posts.storeCKEditorImages');
-    Route::resource('posts','PostController');
+    Route::resource('posts', 'PostController');
 
 
     Route::get('system-calendar', 'SystemCalendarController@index')->name('systemCalendar');
-
 });

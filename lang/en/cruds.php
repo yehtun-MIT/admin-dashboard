@@ -77,4 +77,21 @@ return [
             'logout_time'              => 'LogOut Time'
         ],
     ],
+    'user_info' => [
+        'general_info'          => 'Personal Information',
+        'title_singular' => 'User',
+        'fields'         => [
+            'id'                       => 'ID',
+            'name'                     => 'Name',
+            'email'                    => 'Email',
+            'password'                 => 'Password',
+            'confirm_password'          => 'Confrim Password',
+            'role'  => 'Role', 
+            'avatar'=> 'Avatar',
+            'change_password' => 'Change Password', 
+            'current_password' => 'Current Password',
+            'new_password' => 'New Password',
+            'confirm_password' => 'Re-type Password',
+        ],
+    ],
 ];

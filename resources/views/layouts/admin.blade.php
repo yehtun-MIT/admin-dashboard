@@ -132,7 +132,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
-                            <a class="dropdown-item">
+                            <a class="dropdown-item" href="{{ route('admin.user_info.index') }}">
                                 <i class="ti-settings text-primary"></i>
                                 Settings
                             </a>
@@ -161,6 +161,7 @@
             @include('partials.menu')
             <div class="main-panel">
                 <div class="content-wrapper">
+                    @yield('content')
                     <div>
                         @if (session('message'))
                             <div class="mb-2">
@@ -193,7 +194,8 @@
                             </div>
                         @endif
                     </div>
-                    @yield('content')
+                    
+                    
                 </div>
             </div>
         </div>
