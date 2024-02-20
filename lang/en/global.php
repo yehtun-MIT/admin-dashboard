@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'save_change'=>'Save Changes',
     'actions'                        => 'Actions',
     'add'                            => 'Add',
     'allRightsReserved'              => 'All rights reserved.',
