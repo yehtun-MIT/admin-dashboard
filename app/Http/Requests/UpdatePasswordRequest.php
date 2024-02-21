@@ -16,20 +16,15 @@ class UpdatePasswordRequest extends FormRequest
     {
         return true;
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return [
             'current_password' => [
                 'required',
-                function ($attribute, $value, $fail) {
+                // field_name, $value , $response data
+                function ($attribute, $value, $fail) { 
                     if (!Hash::check($value, auth()->user()->password)) {
-                        $fail('The current password is incorrect!.');
+                        $fail('The current password is incorrect!.'); //responese data for fail message 
                     }
                 },
             ],
