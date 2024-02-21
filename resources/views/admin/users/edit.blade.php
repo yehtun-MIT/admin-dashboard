@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label class="required" for="name">{{ trans('cruds.user.fields.name') }}</label>
                             <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text"
-                                name="name" id="name" value="{{ old('name', $user->name) }}" required>
+                                name="name" id="name" value="{{ old('name', $user->name) }}" >
                             <span class="name_error"></span>
                             @if ($errors->has('name'))
                                 <div class="invalid-feedback">
@@ -47,7 +47,7 @@
                         <div class="form-group">
                             <label class="required" for="email">{{ trans('cruds.user.fields.email') }}</label>
                             <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email"
-                                name="email" id="email" value="{{ old('email', $user->email) }}" required>
+                                name="email" id="email" value="{{ old('email', $user->email) }}" >
                             <span class="email_error"></span>
                             @if ($errors->has('email'))
                                 <div class="invalid-feedback">
@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label class="required" for="password">{{ trans('cruds.user.fields.password') }}</label>
                             <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" type="password"
-                                name="password" id="password" value="{{ old('password', '') }}" required>
+                                name="password" id="password" value="{{ old('password', '') }}" >
                             <span class="password_error"></span>
                             @if ($errors->has('password'))
                                 <div class="invalid-feedback">
@@ -81,7 +81,7 @@
                                     style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                             </div>
                             <select class="form-control select2 {{ $errors->has('roles') ? 'is-invalid' : '' }}"
-                                name="roles[]" id="roles" multiple required>
+                                name="roles[]" id="roles" multiple >
                                 @foreach ($roles as $id => $role)
                                     <option value="{{ $role->id }}" {{ in_array($role->id, old('roles', [])) || $user->roles->contains($role->id) ? 'selected' : '' }}>{{ $role->title }}
                                     </option>
@@ -113,7 +113,7 @@
         </div>
     </div>
 @endsection
-@section('scripts')
+{{-- @section('scripts')
     <script>
         $('#save').on('click', function(e) {
             e.preventDefault();
@@ -161,4 +161,4 @@
             }
         }
     </script>
-@endsection
+@endsection --}}

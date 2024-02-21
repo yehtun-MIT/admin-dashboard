@@ -11,6 +11,7 @@
             content: " *";
             color: red;
         }
+        
     </style>
 @endsection
 @section('content')
@@ -27,7 +28,7 @@
                         <div class="form-group">
                             <label class="required" for="title">{{ trans('cruds.permission.fields.title') }}</label>
                             <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text"
-                                name="title" id="title" value="{{ old('title', '') }}" required>
+                                name="title" id="title" value="{{ old('title', '') }}" >
                             <span class="title_error"></span>
                             @if ($errors->has('title'))
                                 <div class="invalid-feedback">
@@ -54,7 +55,7 @@
         </div>
     </div>
 @endsection
-
+{{-- 
 @section('scripts')
     <script>
         $('#save').on('click', function(e) {
@@ -73,4 +74,4 @@
             }
         }
     </script>
-@endsection
+@endsection --}}

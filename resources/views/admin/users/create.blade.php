@@ -1,10 +1,7 @@
 @extends('layouts.admin')
 @section('styles')
     <style>
-        .name_error,
-        .email_error,
-        .password_error,
-        .role_error {
+         .title_error {
             color: red;
             font-size: 13px;
             font-style: italic;
@@ -16,6 +13,7 @@
         }
     </style>
 @endsection
+
 @section('content')
     <div class="card">
         <div class="card-header">
@@ -29,10 +27,10 @@
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="form-group">
                             <label class="required" for="name">{{ trans('cruds.user.fields.name') }}</label>
-                            <input class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" type="text"
-                                name="name" id="name" value="{{ old('name', '') }}" required>
+                            <input class="form-control {{ $errors->has('name') ? 'is-invalid' : ' ' }}" type="text"
+                                name="name" id="name" value="{{ old('name', '') }}" >
                             <span class="name_error"></span>
-                            @if ($errors->has('name'))
+                            @if($errors->has('name'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('name') }}
                                 </div>
@@ -42,9 +40,9 @@
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
                         <div class="form-group">
-                            <label class="required" for="email">{{ trans('cruds.user.fields.email') }}</label>
+                            <label class="" for="email">{{ trans('cruds.user.fields.email') }}</label>
                             <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email"
-                                name="email" id="email" value="{{ old('email', '') }}" required>
+                                name="email" id="email" value="{{ old('email', '') }}" >
                             <span class="email_error"></span>
                             @if ($errors->has('email'))
                                 <div class="invalid-feedback">
@@ -79,7 +77,7 @@
                                     style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                             </div>
                             <select class="form-control select2 {{ $errors->has('roles') ? 'is-invalid' : '' }}"
-                                name="roles[]" id="roles" multiple required>
+                                name="roles[]" id="roles" multiple >
                                 @foreach ($roles as $id => $role)
                                     <option value="{{ $id }}"
                                         {{ in_array($id, old('roles', [])) ? 'selected' : '' }}>{{ $role }}
@@ -113,7 +111,7 @@
         </div>
     </div>
 @endsection
-@section('scripts')
+{{-- @section('scripts')
     <script>
         $('#save').on('click', function(e) {
             e.preventDefault();
@@ -173,4 +171,4 @@
             }
         }
     </script>
-@endsection
+@endsection --}}

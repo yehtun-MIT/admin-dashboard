@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <label class="required" for="title">{{ trans('cruds.role.fields.title') }}</label>
                             <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text"
-                                name="title" id="title" value="{{ old('title', $role->title) }}" required>
+                                name="title" id="title" value="{{ old('title', $role->title) }}">
                             <span class="title_error"></span>
                             @if ($errors->has('title'))
                                 <div class="invalid-feedback">
@@ -49,7 +49,7 @@
                                     style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                             </div>
                             <select class="form-control select2 {{ $errors->has('permissions') ? 'is-invalid' : '' }}"
-                                name="permissions[]" id="permissions" multiple required>
+                                name="permissions[]" id="permissions" multiple >
                                 @foreach ($permissions as $id => $permission)
                                     <option value="{{ $id }}"
                                         {{ in_array($id, old('permissions', [])) || $role->permissions->contains($id) ? 'selected' : '' }}>
@@ -82,7 +82,7 @@
         </div>
     </div>
 @endsection
-@section('scripts')
+{{-- @section('scripts')
     <script>
         $('#save').on('click', function(e) {
             e.preventDefault();
@@ -119,4 +119,4 @@
             }
         }
     </script>
-@endsection
+@endsection --}}

@@ -29,7 +29,7 @@
                         <div class="form-group">
                             <label class="required" for="title">{{ trans('cruds.permission.fields.title') }}</label>
                             <input class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" type="text"
-                                name="title" id="title" value="{{ old('title', $permission->title) }}" required>
+                                name="title" id="title" value="{{ old('title', $permission->title) }}" >
                             <span class="title_error"></span>
                             @if ($errors->has('title'))
                                 <div class="invalid-feedback">
@@ -57,7 +57,7 @@
     </div>
 @endsection
 
-@section('scripts')
+{{-- @section('scripts')
     <script>
         $('#save').on('click', function(e) {
             e.preventDefault();
@@ -75,4 +75,4 @@
             }
         }
     </script>
-@endsection
+@endsection --}}
