@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
+use App\Exports\AuditLogExport;
 use Gate;
 use App\Http\Controllers\Controller;
 use App\Models\AuditLog;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuditLogsController extends Controller
@@ -49,6 +52,11 @@ class AuditLogsController extends Controller
         $auditlog = AuditLog::find($id);
         $auditlog->delete();
         return redirect()->route('admin.audit_logs.index')->with('message' , 'User Log History Delete Successfully!');
+    }
+
+    public function exportCsv()
+    {
+        return Excel::download(new AuditLogExport, 'auditlogs.xlsx');
     }
 
 }
