@@ -53,6 +53,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // AuditLogs
     Route::delete('audit_logs/destroy', 'AuditLogsController@massDestroy')->name('audit_logs.massDestroy');
+    Route::get('export/audit_logs', 'AuditLogsController@exportCsv')->name('audit_logs.export');
     Route::resource('audit_logs', 'AuditLogsController');
 
     Route::post('posts/media', 'PostController@storeMedia')->name('posts.storeMedia');

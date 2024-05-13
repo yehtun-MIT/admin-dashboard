@@ -3,6 +3,9 @@
     <div class="card">
         <div class="custom-header">
             <h5 class=" font-weight-bold "> {{ trans('cruds.auditLogs.log') }} {{ trans('global.list') }}</h5>
+
+            <a href="{{ route('admin.audit_logs.export', request()->all()) }}"
+                class="btn btn-info ">Export</a>
         </div>
 
         <div class="card-body">

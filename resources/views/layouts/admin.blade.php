@@ -41,12 +41,27 @@
     <link rel="stylesheet" href="{{ asset('css/expense.css') }}">
     <link rel="stylesheet" href="{{ asset('css/tree.css') }}">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-
+    <style>
+        .select-2:disabled {
+            background-color: #e9ecef !important;
+        }
+        
+        .text-loading {
+            color: #4B49AC !important ;
+        }
+    </style>
     @yield('styles')
 
 </head>
 
 <body>
+       <!-- Spinner Start -->
+       <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-loading" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
     <div class="container-scroller">
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
